@@ -15,7 +15,6 @@ from Core import TerminationCriteria
 from Core.Explainer import Explainer
 from Explanation.Detector import Detector
 from Explanation.HyperparameterEvaluator import HyperparameterEvaluator
-from Explanation.SuccessForGC import count_found_targets
 from FSStochasticSearch.Operators import SinglePointFSMutation
 from FSStochasticSearch.SA import SA
 from PSMiners.DEAP.DEAPPSMiner import DEAPPSMiner
@@ -141,19 +140,19 @@ def explanation():
     #get_bt_explainer().get_variables_properties_table()
 
 
-def evaluation():
-    gc_problem = GraphColouring.make_insular_instance(amount_of_islands=4)
-    gc_problem.view()
-    bt_problem = EfficientBTProblem.from_Graph_Colouring(gc_problem)
-    experimental_directory = r"C:\Users\gac8\PycharmProjects\PS-PDF\Experimentation\GC\Dummy"
-    detector = Detector.from_folder(problem=bt_problem,
-                                     folder=experimental_directory,
-                                     speciality_threshold=0.2,
-                                     verbose=True)
-    detector.generate_files_with_default_settings(30000, 30000)
-    mined_pss = detector.pss
-    count = count_found_targets(gc_problem, mined_pss)
-    print(f"Out of the {len(mined_pss)} mined pss, {count} were the true clique targets")
+# def evaluation():
+#     gc_problem = GraphColouring.make_insular_instance(amount_of_islands=4)
+#     gc_problem.view()
+#     bt_problem = EfficientBTProblem.from_Graph_Colouring(gc_problem)
+#     experimental_directory = r"C:\Users\gac8\PycharmProjects\PS-PDF\Experimentation\GC\Dummy"
+#     detector = Detector.from_folder(problem=bt_problem,
+#                                      folder=experimental_directory,
+#                                      speciality_threshold=0.2,
+#                                      verbose=True)
+#     detector.generate_files_with_default_settings(30000, 30000)
+#     mined_pss = detector.pss
+#     count = count_found_targets(gc_problem, mined_pss)
+#     print(f"Out of the {len(mined_pss)} mined pss, {count} were the true clique targets")
 
 
 def grid_search():
